@@ -4,14 +4,23 @@ on:
   push:
 
 jobs:
-  build-gradle-project:
+  continuous-integration:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout project sources
-      uses: actions/checkout@v3
-    - name: Setup Gradle
+    - name: Obtener los últimos cambios del proyecto
+      uses: actions/checkout@v4
+
+    - name: Instalar Java 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: 17
+      
+    - name: Configurar gradle
       uses: gradle/gradle-build-action@v2
-    - name: Run build with Gradle Wrapper
+
+    - name: Compilar el proyecto
       run: ./gradlew build
-    - name: Run Tests
+
+    - name: Ejecutar pruebas
       run: ./gradlew test

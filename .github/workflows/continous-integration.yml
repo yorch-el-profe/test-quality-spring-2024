@@ -22,5 +22,5 @@ jobs:
     - name: Compilar el proyecto
       run: ./gradlew build
 
-    - name: Ejecutar pruebas
-      run: ./gradlew test
+    - name: Verificación del Code Coverage
+      run: ./gradlew jacocoTestCoverageVerification
